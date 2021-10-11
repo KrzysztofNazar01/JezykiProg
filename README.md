@@ -1,0 +1,1 @@
+Przedmiot na 3 semestrze kierunku Informatyka na PG
