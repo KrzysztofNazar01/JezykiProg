@@ -2,6 +2,7 @@
 {-- ctrl alt m  --> stop running code --}
 -- liczenie znakow online: https://www.charactercountonline.com/
 import System.IO ()
+import System.Win32 (RegInfoKey(values))
 
 cyfryJedn :: Integer -> Integer 
 cyfryJedn 0 = 0  --zero
@@ -21,7 +22,7 @@ cyfryDzies 0 = 0  --zero
 
 cyfryDzies 2 = 11  --dwadziescia
 cyfryDzies 3 = 11  --trzydziesci
-cyfryDzies 4 = 11  --czterdziesci
+cyfryDzies 4 = 12  --czterdziesci
 cyfryDzies 5 = 12  --piecdziesiat
 cyfryDzies 6 = 13  --szescdziesiat
 cyfryDzies 7 = 15  --siedemdziesciat
@@ -54,14 +55,33 @@ cyfrySetek 8 = 8  --osiemset
 cyfrySetek 9 = 11  --dziewiecset
 
 
+
+
+calcRes :: (Integer, Integer, Integer) -> Integer
+calcRes (set, dzies, jedn) = 
+    if dzies == 1
+        then 
+            cyfryDziesSpec dzies + cyfrySetek set
+        else
+           cyfryJedn jedn + cyfryDzies dzies + cyfrySetek set 
+
+
 val :: Integer
-val = 435
+val = 345
 main :: IO ()
 main = do
+
         let jedn = val `mod` 10 :: Integer
         let dzies = (val `mod` 100 - val `mod` 10) `div` 10 :: Integer
         let setek = (val `mod` 1000 - val `mod` 100) `div` 100 :: Integer
-        print(setek)
+        
+        print setek
+        print dzies
+        print jedn
+
+        print(calcRes(setek, dzies, jedn))
+
+
 
 
 
