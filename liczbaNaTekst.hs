@@ -1,5 +1,6 @@
 
 {-- ctrl alt m  --> stop running code --}
+-- liczenie znakow online: https://www.charactercountonline.com/
 import System.IO ()
 
 cyfryJedn :: Integer -> Integer 
@@ -53,13 +54,14 @@ cyfrySetek 8 = 8  --osiemset
 cyfrySetek 9 = 11  --dziewiecset
 
 
-
 val :: Integer
-val = 2 :: Integer
+val = 435
 main :: IO ()
 main = do
-        putStrLn "Hello, what's your name?"  
-        print(cyfryJedn val)
+        let jedn = val `mod` 10 :: Integer
+        let dzies = (val `mod` 100 - val `mod` 10) `div` 10 :: Integer
+        let setek = (val `mod` 1000 - val `mod` 100) `div` 100 :: Integer
+        print(setek)
 
 
 
