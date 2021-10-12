@@ -19,7 +19,7 @@ cyfryJedn 9 = 8  --dziewiec
 
 cyfryDzies :: Integer -> Integer 
 cyfryDzies 0 = 0  --zero
-
+cyfryDzies 1 = 8  --dziesiec
 cyfryDzies 2 = 11  --dwadziescia
 cyfryDzies 3 = 11  --trzydziesci
 cyfryDzies 4 = 12  --czterdziesci
@@ -32,7 +32,7 @@ cyfryDzies 9 = 17  --dziewiecdziesciat
 
 cyfryDziesSpec :: Integer -> Integer 
 cyfryDziesSpec 1 = 10  --jedenascie
-cyfryDziesSpec 2 = 11  --dwadziescia
+cyfryDziesSpec 2 = 9   --dwanascie
 cyfryDziesSpec 3 = 10  --trzynascie
 cyfryDziesSpec 4 = 11  --czternascie
 cyfryDziesSpec 5 = 10  --pietnascie
@@ -59,15 +59,14 @@ cyfrySetek 9 = 11  --dziewiecset
 
 calcRes :: (Integer, Integer, Integer) -> Integer
 calcRes (set, dzies, jedn) = 
-    if dzies == 1
-        then 
-            cyfryDziesSpec dzies + cyfrySetek set
-        else
-           cyfryJedn jedn + cyfryDzies dzies + cyfrySetek set 
+    if dzies == 1 && jedn /= 0 then 
+        cyfryDziesSpec jedn + cyfrySetek set
+    else
+        cyfryJedn jedn + cyfryDzies dzies + cyfrySetek set 
 
 
 val :: Integer
-val = 345
+val = 212
 main :: IO ()
 main = do
 
@@ -78,6 +77,9 @@ main = do
         print setek
         print dzies
         print jedn
+
+
+        
 
         print(calcRes(setek, dzies, jedn))
 
