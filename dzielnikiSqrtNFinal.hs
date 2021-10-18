@@ -1,4 +1,4 @@
-import System.IO ()
+import System.IO ()  
 import System.Win32 (RegInfoKey(values))
 import GHC.Num.Backend.Selected (integer_powmod)
 
@@ -21,15 +21,20 @@ forLoop i maxi counter number =
 calcSqrt :: Integer -> Integer
 calcSqrt = truncate . sqrt . fromInteger
 
-
 num :: Integer
 num = 100
 main :: IO ()
 main = do
+
+    if(num > 0) then do
     putStrLn ("The number of divisor of " ++ show num ++ " is:") --"show x" pokazuje x jako stringa 
     let maxrep = calcSqrt num
 
     print (forLoop 1 maxrep 0 num)
+
+
+    else do
+        print "Invalid number"
 
 
 
